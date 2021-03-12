@@ -1,16 +1,14 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all  # すべてのレコードを@postsに代入
+    @posts = Post.order(id: "DESC")
   end
 
-  def new
-  end
-
-  def create
-  end
+  # def new
+  # end
 
   def create
-    Post.create(content: params[:content])
+    post = Post.create(content: params[:content])
+    render json:{ post: post }
   end
 
 end
